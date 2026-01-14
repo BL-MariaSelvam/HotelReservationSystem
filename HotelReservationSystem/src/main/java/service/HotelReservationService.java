@@ -29,7 +29,7 @@ public class HotelReservationService {
                 .orElseThrow(() -> new RuntimeException("No hotels available"));
     }
 
-    private int calculateTotalCost(Hotel hotel, CustomerType customerType, List<LocalDate> dates) {
+    public int calculateTotalCost(Hotel hotel, CustomerType customerType, List<LocalDate> dates) {
         int total = 0;
 
         for (LocalDate date : dates) {
