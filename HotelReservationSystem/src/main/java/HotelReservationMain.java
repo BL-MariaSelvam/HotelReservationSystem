@@ -23,7 +23,8 @@ public class HotelReservationMain {
             System.out.println("2. Find Cheapest Hotel for a Date Range");
             System.out.println("3.List of all hotels");
             System.out.println("4.Find Cheapest Best-Rated Hotel");
-            System.out.println("5. Exit");
+            System.out.println("5.Find Best rated Hotel");
+            System.out.println("6. Exit");
             System.out.print("Enter your option: ");
             option = sc.nextInt();
             sc.nextLine(); // consume newline
@@ -100,7 +101,28 @@ public class HotelReservationMain {
                                        " - Rating: " + bestHotel.getRating());
                     System.out.println("Total Rates: $" + totalCostUC6);
                     break;
-                case 5:
+                case 5: // UC7: Find Best-Rated Hotel
+                    System.out.print("Enter Customer Type (Regular/Rewards): ");
+                    String customerInputUC7 = sc.nextLine().trim().toUpperCase();
+                    CustomerType customerTypeUC7 = CustomerType.valueOf(customerInputUC7);
+
+                    System.out.print("Enter Dates (ddMMMyyyy) separated by commas, e.g., 11Sep2020,12Sep2020: ");
+                    String dateInputUC7 = sc.nextLine();
+
+                    List<LocalDate> datesUC7 = Arrays.stream(dateInputUC7.split(","))
+                            .map(String::trim)
+                            .map(date -> LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMMyyyy")))
+                            .toList();
+
+                    Hotel bestRatedHotel = service.findBestRatedHotel(customerTypeUC7, datesUC7);
+                    int totalCostUC7 = service.calculateTotalCost(bestRatedHotel, customerTypeUC7, datesUC7);
+
+                    System.out.println("Best Rated Hotel: " + bestRatedHotel.getName() +
+                                       " - Rating: " + bestRatedHotel.getRating());
+                    System.out.println("Total Rates: $" + totalCostUC7);
+                    break;
+
+                case 6:
                     System.out.println("Exiting... Thank you!");
                     break;
 

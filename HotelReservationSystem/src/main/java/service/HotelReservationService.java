@@ -46,5 +46,11 @@ public class HotelReservationService {
     public List<Hotel> getHotels() {
         return hotels;
     }
+    
+    public Hotel findBestRatedHotel(CustomerType customerType, List<LocalDate> dates) {
+        return hotels.stream()
+                .max(Comparator.comparingInt(Hotel::getRating))
+                .orElseThrow(() -> new RuntimeException("No hotels available"));
+    }
 }
 
