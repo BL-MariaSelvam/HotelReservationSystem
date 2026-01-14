@@ -24,7 +24,8 @@ public class HotelReservationMain {
             System.out.println("3.List of all hotels");
             System.out.println("4.Find Cheapest Best-Rated Hotel");
             System.out.println("5.Find Best rated Hotel");
-            System.out.println("6. Exit");
+            System.out.println("6.Add Reward Customer Rates");
+            System.out.println("7. Exit");
             System.out.print("Enter your option: ");
             option = sc.nextInt();
             sc.nextLine(); // consume newline
@@ -121,8 +122,23 @@ public class HotelReservationMain {
                                        " - Rating: " + bestRatedHotel.getRating());
                     System.out.println("Total Rates: $" + totalCostUC7);
                     break;
+                    
+                case 6: // UC9: Add Reward Customer Rates
+                    System.out.print("Enter Hotel Name: ");
+                    String hotelName = sc.nextLine();
 
-                case 6:
+                    System.out.print("Enter Weekday Rate for Reward Customers: ");
+                    int weekdayReward = sc.nextInt();
+
+                    System.out.print("Enter Weekend Rate for Reward Customers: ");
+                    int weekendReward = sc.nextInt();
+                    sc.nextLine(); // consume newline
+
+                    service.updateRewardRates(hotelName, weekdayReward, weekendReward);
+                    break;
+
+
+                case 7:
                     System.out.println("Exiting... Thank you!");
                     break;
 

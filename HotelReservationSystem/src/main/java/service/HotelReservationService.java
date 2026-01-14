@@ -52,5 +52,16 @@ public class HotelReservationService {
                 .max(Comparator.comparingInt(Hotel::getRating))
                 .orElseThrow(() -> new RuntimeException("No hotels available"));
     }
+    
+    public void updateRewardRates(String hotelName, int weekdayRate, int weekendRate) {
+        Hotel hotel = hotels.stream()
+                .filter(h -> h.getName().equalsIgnoreCase(hotelName))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Hotel not found: " + hotelName));
+        hotel.setRewardRates(weekdayRate, weekendRate);
+        System.out.println(hotel.getName() + " Reward Rates Updated: Weekday $" + weekdayRate +
+                           ", Weekend $" + weekendRate);
+    }
+
 }
 
