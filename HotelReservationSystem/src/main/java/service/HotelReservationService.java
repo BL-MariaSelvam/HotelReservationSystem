@@ -42,5 +42,9 @@ public class HotelReservationService {
         }
         return total;
     }
+    
+    public List<Hotel> getHotels() {
+        return hotels;
+    }
 }
 

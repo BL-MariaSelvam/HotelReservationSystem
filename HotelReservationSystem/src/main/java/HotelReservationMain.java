@@ -21,7 +21,8 @@ public class HotelReservationMain {
             System.out.println("\n=== Hotel Reservation System Menu ===");
             System.out.println("1. Add Hotel");
             System.out.println("2. Find Cheapest Hotel for a Date Range");
-            System.out.println("3. Exit");
+            System.out.println("3.List of all hotels");
+            System.out.println("4. Exit");
             System.out.print("Enter your option: ");
             option = sc.nextInt();
             sc.nextLine(); // consume newline
@@ -72,8 +73,14 @@ public class HotelReservationMain {
                     System.out.println("Cheapest Hotel: " + cheapestHotel.getName());
                     System.out.println("Total Rates: $" + totalCost);
                     break;
-
                 case 3:
+                    System.out.println("\n--- List of Hotels ---");
+                    service.getHotels().forEach(h -> 
+                        System.out.println(h.getName() + " - Rating: " + h.getRating())
+                    );
+                    break;
+
+                case 4:
                     System.out.println("Exiting... Thank you!");
                     break;
 
